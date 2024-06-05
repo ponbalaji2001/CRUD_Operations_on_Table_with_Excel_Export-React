@@ -1,0 +1,72 @@
+input {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    border:1px solid gray;
+}
+
+
+.card-header .close-icon{
+    float: right;
+    margin-right: -130px;
+    margin-top: -10px;
+    color: gray;
+}
+
+.table-header Button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   color: white;
+   background-color: #1565c0;
+   outline: none;
+   border: 1px 1solid #1565c0;
+   border-radius:5px;
+   width:140px;
+   height: 40px;
+   margin: 10px;
+   font-size: 12px;
+}
+
+.table-header Button:hover{
+    color: white;
+    background-color: #1565c0;
+    border: 1px 1solid #1565c0;
+}
+
+.table-header{
+    display: flex;
+    justify-content: flex-end;
+    width:100%;
+    align-items: center;
+}
+
+#availability {
+    width: 100%;
+    max-width: 310px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 14px;
+    outline: none; 
+    margin: 10px;
+  }
+  
+  
+  #availability option {
+    font-size: 14px;
+
+  }
+
+.column {
+    background-color: #ECECEC;
+}
+
+.column .column-val{
+    font-weight: bold;
+}
