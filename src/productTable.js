@@ -3,7 +3,8 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 import { Edit, Delete, Download, Add, Close } from '@mui/icons-material';
 import productData from './productData.json'; 
 import './productTable.css'
-var XLSX = require("xlsx");
+// var XLSX = require("xlsx");
+var XlsxPopulate = require('xlsx-populate');
 
 export default function BasicTable() {
 
@@ -85,12 +86,103 @@ export default function BasicTable() {
     setProductId('');
   }
 
-  const handleDownload=()=>{
-    const book= XLSX.utils.book_new();
-    const sheet= XLSX.utils.json_to_sheet(productsList);
-    XLSX.utils.book_append_sheet(book, sheet, "ProductSheet1");
-    XLSX.writeFile(book, "ProductList.xlsx");
-  }
+  // const handleDownload=()=>{
+  //   const book= XLSX.utils.book_new();
+  //   const sheet= XLSX.utils.json_to_sheet(productsList);
+  //   XLSX.utils.book_append_sheet(book, sheet, "ProductSheet1");
+  //   XLSX.writeFile(book, "ProductList.xlsx");
+  // }
+
+
+const handleDownload = () => {
+  XlsxPopulate.fromBlankAsync()
+    .then(workbook => {
+      const sheet = workbook.sheet(0);
+      sheet.name("ProductSheet1");
+
+      // Add title
+      sheet.cell("A1").value("My Products").style({
+        bold: true,
+        fontSize: 15,
+        horizontalAlignment: "center",
+        verticalAlignment: "center"
+      });
+
+      // Merge cells for title
+      sheet.range("A1:G1").merged(true);
+
+      // Add headers
+      const headers = ["No.", "Product Name", "Brand", "Color", "Price", "Rating", "Availability"];
+      headers.forEach((header, index) => {
+        sheet.cell(2, index + 1).value(header).style({
+          bold: true,
+          fill: "ECECEC", 
+          fontColor: "000000", 
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+      });
+
+      // Add data
+      productsList.forEach((product, rowIndex) => {
+        const productIdAsNumber = Number(product.id);
+        sheet.cell(rowIndex + 3, 1).value(productIdAsNumber).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 2).value(product.product_name).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 3).value(product.brand).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 4).value(product.color).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 5).value(product.price).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 6).value(product.rating).style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+        sheet.cell(rowIndex + 3, 7).value(product.availability ? 'Available' : 'Not Available').style({
+          horizontalAlignment: "left",
+          verticalAlignment: "center"
+        });
+      });
+
+      // Adjust column widths
+      sheet.column("A").width(5);
+      sheet.column("B").width(20);
+      sheet.column("C").width(15);
+      sheet.column("D").width(12);
+      sheet.column("E").width(10);
+      sheet.column("F").width(10);
+      sheet.column("G").width(15);
+
+      // Save workbook to file
+      return workbook.outputAsync()
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          document.body.appendChild(a);
+          a.href = url;
+          a.download = 'ProductList.xlsx';
+          a.click();
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+        });
+    })
+    .catch(err => {
+      console.error("Error creating Excel file:", err);
+    });
+};
+
 
   return (
     <div className="product-table">
@@ -104,7 +196,7 @@ export default function BasicTable() {
             <p>Download</p>
         </Button>
       </div>
-
+      <h2>My Products</h2>
     <TableContainer component={Paper} sx={{marginTop:'10px'}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className='column'>
@@ -125,9 +217,7 @@ export default function BasicTable() {
               key={product.id} 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="left">
-                {product.id}
-              </TableCell>
+              <TableCell align="left">{product.id}</TableCell>
               <TableCell align="left">{product.product_name}</TableCell>
               <TableCell align="left">{product.brand}</TableCell>
               <TableCell align="left">{product.color}</TableCell>
