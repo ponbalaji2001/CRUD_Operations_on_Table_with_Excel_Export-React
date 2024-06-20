@@ -125,7 +125,7 @@ const handleDownload = () => {
 
       // Add data
       productsList.forEach((product, rowIndex) => {
-        const productIdAsNumber = Number(product.id);
+        const productIdAsNumber = Number(rowIndex+1);
         sheet.cell(rowIndex + 3, 1).value(productIdAsNumber).style({
           horizontalAlignment: "left",
           verticalAlignment: "center"
