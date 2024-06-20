@@ -41,8 +41,8 @@ export default function BasicTable() {
       productsList[productId-1].product_name=name;
       productsList[productId-1].brand=brand;
       productsList[productId-1].color=colour;
-      productsList[productId-1].price=price;
-      productsList[productId-1].rating=rating;
+      productsList[productId-1].price=parseFloat(price);
+      productsList[productId-1].rating=parseFloat(rating);
       productsList[productId-1].availability=availability;  
     }
 
