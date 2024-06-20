@@ -205,7 +205,7 @@ const handleDownload = () => {
             <TableCell align="left" className='column-val'>Product Name</TableCell>
             <TableCell align="left" className='column-val'>Brand</TableCell>
             <TableCell align="left" className='column-val'>Color</TableCell>
-            <TableCell align="left" className='column-val'>Price</TableCell>
+            <TableCell align="left" className='column-val'>Price ($)</TableCell>
             <TableCell align="left" className='column-val'>Rating</TableCell>
             <TableCell align="left" className='column-val'>Availability</TableCell>
             <TableCell align="left" className='column-val'>Actions</TableCell>
