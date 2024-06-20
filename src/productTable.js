@@ -172,7 +172,7 @@ const handleDownload = () => {
           const a = document.createElement('a');
           document.body.appendChild(a);
           a.href = url;
-          a.download = 'ProductList.xlsx';
+          a.download = 'Product_list.xlsx';
           a.click();
           window.URL.revokeObjectURL(url);
           document.body.removeChild(a);
@@ -196,7 +196,7 @@ const handleDownload = () => {
             <p>Download</p>
         </Button>
       </div>
-      <h2>My Products</h2>
+      <h2>Products</h2>
     <TableContainer component={Paper} sx={{marginTop:'10px'}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className='column'>
@@ -212,12 +212,12 @@ const handleDownload = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {productsList.map((product) => (
+          {productsList.map((product, index) => (
             <TableRow
               key={product.id} 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="left">{product.id}</TableCell>
+              <TableCell align="left">{index+1}</TableCell>
               <TableCell align="left">{product.product_name}</TableCell>
               <TableCell align="left">{product.brand}</TableCell>
               <TableCell align="left">{product.color}</TableCell>
