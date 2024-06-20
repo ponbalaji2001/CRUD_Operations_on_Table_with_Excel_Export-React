@@ -5,7 +5,7 @@
       "product_name": "Smartphone",
       "rating": 4.5,
       "price": 599.99,
-      "brand": "TechMaster",
+      "brand": "Tech Master",
       "availability": true,
       "color": "Black"
     },
@@ -14,16 +14,16 @@
       "product_name": "Laptop",
       "rating": 4.8,
       "price": 1299.99,
-      "brand": "EagleTech",
+      "brand": "Eagle Tech",
       "availability": false,
       "color": "Silver"
     },
     {
       "id": "3",
-      "product_name": "Headphones",
+      "product_name": "Headphone",
       "rating": 4.2,
       "price": 99.99,
-      "brand": "SoundBliss",
+      "brand": "Sound Bliss",
       "availability": true,
       "color": "White"
     },
@@ -32,16 +32,16 @@
       "product_name": "Tablet",
       "rating": 4.0,
       "price": 349.99,
-      "brand": "TechGuru",
+      "brand": "Tech Guru",
       "availability": true,
       "color": "Space Gray"
     },
     {
       "id": "5",
-      "product_name": "Smartwatch",
+      "product_name": "Smart Watch",
       "rating": 4.6,
       "price": 199.99,
-      "brand": "WatchTech",
+      "brand": "Watch Tech",
       "availability": true,
       "color": "Rose Gold"
     }
