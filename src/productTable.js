@@ -101,7 +101,7 @@ const handleDownload = () => {
       sheet.name("ProductSheet1");
 
       // Add title
-      sheet.cell("A1").value("My Products").style({
+      sheet.cell("A1").value("Products").style({
         bold: true,
         fontSize: 15,
         horizontalAlignment: "center",
